@@ -1,0 +1,22 @@
+.stat-card {
+  background-color: #f4f4f4;
+  border-left: 5px solid #0a6e31; /* Le vert du Sénégal utilisé dans le Header */
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex: 1; /* Pour qu'elles occupent la même largeur dans un conteneur flex */
+}
+
+.stat-chiffre {
+  margin: 0;
+  font-size: 2rem;
+  color: #0a6e31;
+}
+
+.stat-label {
+  margin: 5px 0 0 0;
+  color: #555;
+  font-weight: bold;
+}

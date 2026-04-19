@@ -7,3 +7,9 @@ padding: 20px;
 max-width: 800px;
 margin: 0 auto;
 }
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap; /* Permet de passer à la ligne sur mobile */
+}
