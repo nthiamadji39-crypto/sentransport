@@ -1,15 +1,20 @@
 .App {
 font-family: Arial, sans-serif;
 min-height: 100vh;
+background-color: #f5f6fa;
+display: flex;
+flex-direction: column;
 }
 .contenu {
 padding: 20px;
 max-width: 800px;
 margin: 0 auto;
+width: 100%;
+box-sizing: border-box;
+flex: 1;
 }
-.stats-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-  flex-wrap: wrap; /* Permet de passer à la ligne sur mobile */
+@media (max-width: 600px) {
+.contenu {
+padding: 12px;
+}
 }
