@@ -30,3 +30,16 @@ flex: 1;
     margin-right: 12px;
   }
 }
+.aucune-ligne {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1rem;
+  padding: 32px 0;
+  font-style: italic;
+}
+.compteur-recherche {
+  font-size: 0.8rem;
+  color: #b2bec3;
+  text-align: right;
+  margin: 0 0 8px 0;
+}

@@ -9,6 +9,7 @@ import Footer from './Footer';
 function App() {
   const [recherche, setRecherche] = useState("");
   const [ligneSelectionnee, setLigneSelectionnee] = useState(null);
+  const [nbRecherches, setNbRecherches] = useState(0); // nouveau exo 3
 
   const lignes = [
     { id: 1, numero: "1", depart: "Parcelles Assainies",
@@ -53,29 +54,48 @@ function App() {
     }
   }
 
+  // exo 3
+  function handleRecherche(valeur) {
+  setRecherche(valeur);
+  setNbRecherches(n => n + 1);
+  }
+
   return (
-    <div className="App">
-      <Header />
-      <main className="contenu">
-        <Recherche valeur={recherche} onChange={setRecherche} />
-        <p className="resultat-recherche">
-          {lignesFiltrees.length} ligne{lignesFiltrees.length > 1 ? 's' : ''} trouvee{lignesFiltrees.length > 1 ? 's' : ''}
+  <div className="App">
+    <Header />
+    <main className="contenu">
+      <Recherche valeur={recherche} onChange={handleRecherche} />
+        {nbRecherches > 0 && (
+          <p className="compteur-recherche">
+            Vous avez effectué {nbRecherches} recherche{nbRecherches > 1 ? 's' : ''}
+          </p>
+        )}
+      <p className="resultat-recherche">
+        {lignesFiltrees.length} ligne{lignesFiltrees.length > 1 ? 's' : ''} trouvee{lignesFiltrees.length > 1 ? 's' : ''}
+      </p>
+
+      {/* Exercice 2 : message si aucun résultat */}
+      {lignesFiltrees.length === 0 && (
+        <p className="aucune-ligne">
+          Aucune ligne trouvée pour "{recherche}"
         </p>
-        {lignesFiltrees.map(ligne => (
-          <LigneBus
-            key={ligne.id}
-            numero={ligne.numero}
-            depart={ligne.depart}
-            arrivee={ligne.arrivee}
-            arrets={ligne.arrets}
-            estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
-            onClick={() => handleClickLigne(ligne)}
-          />
-        ))}
-        {ligneSelectionnee && <DetailLigne ligne={ligneSelectionnee} />}
-      </main>
-      <Footer />
-    </div>
+      )}
+
+      {lignesFiltrees.map(ligne => (
+        <LigneBus
+          key={ligne.id}
+          numero={ligne.numero}
+          depart={ligne.depart}
+          arrivee={ligne.arrivee}
+          arrets={ligne.arrets}
+          estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
+          onClick={() => handleClickLigne(ligne)}
+        />
+      ))}
+      {ligneSelectionnee && <DetailLigne ligne={ligneSelectionnee} />}
+    </main>
+    <Footer />
+  </div>
   );
 }
 
