@@ -44,5 +44,19 @@
     "arrets": 11,
     "listeArrets": ["Yoff Village", "Aeroport LSS",
       "Parcelles U17", "Grand Yoff", "HLM", "Sandaga"]
+  },
+  {
+    "id": 7, "numero": "42",
+    "depart": "HLM", "arrivee": "Rufisque",
+    "arrets": 20,
+    "listeArrets": ["HLM Grand Yoff", "Thiaroye",
+      "Yeumbeul", "Keur Massar", "Bambilor", "Rufisque"] 
+  },
+  {
+    "id": 8, "numero": "55",
+    "depart": "Liberte 6", "arrivee": "Touba Toul",
+    "arrets": 15,
+    "listeArrets": ["Liberte 6", "Camberene",
+    "Hann Mariste", "Mbao", "Thiaroye", "Touba Toul"]
   }
 ]
