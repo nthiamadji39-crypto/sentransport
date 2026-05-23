@@ -5,6 +5,7 @@ import Recherche from './Recherche';
 import LigneBus from './LigneBus';
 import DetailLigne from './DetailLigne';
 import Footer from './Footer';
+import Carte from './Carte';
 
 function App() {
 
@@ -95,8 +96,8 @@ function App() {
 
   // exo 3 lab 3
   function handleRecherche(valeur) {
-  setRecherche(valeur);
-  setNbRecherches(n => n + 1);
+    setRecherche(valeur);
+    setNbRecherches(n => n + 1);
   }
 
   // Écran de chargement
@@ -129,50 +130,51 @@ function App() {
 
   // Écran normal (return existant, inchangé)
   return (
-  <div className="App">
-    <Header />
-    <main className="contenu">
-      
-      <button className="btn-recharger" onClick={chargerLignes}>
-        🔄 Recharger les lignes
-      </button>
+    <div className="App">
+      <Header />
+      <main className="contenu">
 
-      <Recherche valeur={recherche} onChange={handleRecherche} />
+        <button className="btn-recharger" onClick={chargerLignes}>
+          🔄 Recharger les lignes
+        </button>
+
+        <Recherche valeur={recherche} onChange={handleRecherche} />
         {nbRecherches > 0 && (
           <p className="compteur-recherche">
             Vous avez effectué {nbRecherches} recherche{nbRecherches > 1 ? 's' : ''}
           </p>
         )}
-      <p className="resultat-recherche">
-        {lignesFiltrees.length} ligne{lignesFiltrees.length > 1 ? 's' : ''} trouvee{lignesFiltrees.length > 1 ? 's' : ''}
-      </p>
-
-      {/* Exercice 2 lab 3: message si aucun résultat */}
-      {lignesFiltrees.length === 0 && (
-        <p className="aucune-ligne">
-          Aucune ligne trouvée pour "{recherche}"
+        <p className="resultat-recherche">
+          {lignesFiltrees.length} ligne{lignesFiltrees.length > 1 ? 's' : ''} trouvee{lignesFiltrees.length > 1 ? 's' : ''}
         </p>
-      )}
 
-      {lignesFiltrees.map(ligne => (
-        <LigneBus
-          key={ligne.id}
-          numero={ligne.numero}
-          depart={ligne.depart}
-          arrivee={ligne.arrivee}
-          arrets={ligne.arrets}
-          estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
-          onClick={() => handleClickLigne(ligne)}
-        />
-      ))}
-      {/* Exercice 3 lab 5 */}
-      {chargementDetails && (
-        <p className="message-chargement">Chargement des détails...</p>
-      )}
-      {detailsLigne && <DetailLigne ligne={detailsLigne} />}
-    </main>
-    <Footer />
-  </div>
+        {/* Exercice 2 lab 3: message si aucun résultat */}
+        {lignesFiltrees.length === 0 && (
+          <p className="aucune-ligne">
+            Aucune ligne trouvée pour "{recherche}"
+          </p>
+        )}
+
+        {lignesFiltrees.map(ligne => (
+          <LigneBus
+            key={ligne.id}
+            numero={ligne.numero}
+            depart={ligne.depart}
+            arrivee={ligne.arrivee}
+            arrets={ligne.arrets}
+            estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
+            onClick={() => handleClickLigne(ligne)}
+          />
+        ))}
+        {/* Exercice 3 lab 5 */}
+        {chargementDetails && (
+          <p className="message-chargement">Chargement des détails...</p>
+        )}
+        {detailsLigne && <DetailLigne ligne={detailsLigne} />}
+        <Carte />   {/* ← NOUVEAU Lab 6*/}
+      </main>
+      <Footer />
+    </div>
   );
 }
 

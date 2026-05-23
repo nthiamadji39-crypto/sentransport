@@ -1,17 +1,18 @@
 .App {
-font-family: Arial, sans-serif;
-min-height: 100vh;
-background-color: #f5f6fa;
-display: flex;
-flex-direction: column;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #f5f6fa;
+  display: flex;
+  flex-direction: column;
 }
+
 .contenu {
-padding: 20px;
-max-width: 800px;
-margin: 0 auto;
-width: 100%;
-box-sizing: border-box;
-flex: 1;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
 }
 
 @media (max-width: 600px) {
@@ -30,6 +31,7 @@ flex: 1;
     margin-right: 12px;
   }
 }
+
 .aucune-ligne {
   text-align: center;
   color: #7f8c8d;
@@ -37,6 +39,7 @@ flex: 1;
   padding: 32px 0;
   font-style: italic;
 }
+
 .compteur-recherche {
   font-size: 0.8rem;
   color: #b2bec3;
@@ -78,4 +81,7 @@ flex: 1;
   font-size: 0.95rem;
   cursor: pointer;
 }
-.btn-recharger:hover { background: #085a28; }
+
+.btn-recharger:hover {
+  background: #085a28;
+}
