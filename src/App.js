@@ -15,6 +15,29 @@ function App() {
   const [recherche, setRecherche] = useState("");
   const [ligneSelectionnee, setLigneSelectionnee] = useState(null);
   const [nbRecherches, setNbRecherches] = useState(0); // nouveau exo 3 lab3
+  const [detailsLigne, setDetailsLigne] = useState(null); //exo 3 lab 5
+  const [chargementDetails, setChargementDetails] = useState(false); //exo3 lab 5
+
+
+  //exercice 1 lab 5
+  // Fonction réutilisable (utilisée par useEffect + bouton)
+  function chargerLignes() {
+    setChargement(true);
+    setErreur(null);
+    fetch("http://localhost:5000/lignes")
+      .then(response => {
+        if (!response.ok) throw new Error("Erreur serveur : " + response.status);
+        return response.json();
+      })
+      .then(data => {
+        setLignes(data);
+        setChargement(false);
+      })
+      .catch(error => {
+        setErreur(error.message);
+        setChargement(false);
+      });
+  }
 
 
   // Charger les données au démarrage
@@ -42,12 +65,32 @@ function App() {
     l.numero.includes(recherche)
   );
 
+  //exo3 lab3
   function handleClickLigne(ligne) {
+    // Désélectionner si on reclique sur la même ligne
     if (ligneSelectionnee && ligneSelectionnee.id === ligne.id) {
       setLigneSelectionnee(null);
-    } else {
-      setLigneSelectionnee(ligne);
+      setDetailsLigne(null);
+      return;
     }
+
+    setLigneSelectionnee(ligne);
+    setChargementDetails(true);
+    setDetailsLigne(null);
+
+    // Charger les détails depuis Flask
+    fetch(`http://localhost:5000/lignes/${ligne.id}`)
+      .then(r => {
+        if (!r.ok) throw new Error("Erreur " + r.status);
+        return r.json();
+      })
+      .then(data => {
+        setDetailsLigne(data);
+        setChargementDetails(false);
+      })
+      .catch(() => {
+        setChargementDetails(false);
+      });
   }
 
   // exo 3 lab 3
@@ -89,6 +132,11 @@ function App() {
   <div className="App">
     <Header />
     <main className="contenu">
+      
+      <button className="btn-recharger" onClick={chargerLignes}>
+        🔄 Recharger les lignes
+      </button>
+
       <Recherche valeur={recherche} onChange={handleRecherche} />
         {nbRecherches > 0 && (
           <p className="compteur-recherche">
@@ -117,7 +165,11 @@ function App() {
           onClick={() => handleClickLigne(ligne)}
         />
       ))}
-      {ligneSelectionnee && <DetailLigne ligne={ligneSelectionnee} />}
+      {/* Exercice 3 lab 5 */}
+      {chargementDetails && (
+        <p className="message-chargement">Chargement des détails...</p>
+      )}
+      {detailsLigne && <DetailLigne ligne={detailsLigne} />}
     </main>
     <Footer />
   </div>

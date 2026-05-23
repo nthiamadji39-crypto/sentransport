@@ -66,3 +66,16 @@ flex: 1;
   font-family: monospace;
   font-size: 0.9rem;
 }
+
+.btn-recharger {
+  display: block;
+  margin: 12px auto;
+  padding: 8px 20px;
+  background: #0a6e31;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.btn-recharger:hover { background: #085a28; }
