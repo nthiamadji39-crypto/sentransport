@@ -6,6 +6,9 @@ import LigneBus from './LigneBus';
 import DetailLigne from './DetailLigne';
 import Footer from './Footer';
 import Carte from './Carte';
+import Meteo from './Meteo';
+import SignalerIncident from './SignalerIncident';
+import ListeIncidents from './ListeIncidents';
 
 function App() {
 
@@ -133,6 +136,7 @@ function App() {
     <div className="App">
       <Header />
       <main className="contenu">
+        <Meteo />                  {/* lab7 ← NOUVEAU, tout en haut */}
 
         <button className="btn-recharger" onClick={chargerLignes}>
           🔄 Recharger les lignes
@@ -172,6 +176,8 @@ function App() {
         )}
         {detailsLigne && <DetailLigne ligne={detailsLigne} />}
         <Carte />   {/* ← NOUVEAU Lab 6*/}
+        <SignalerIncident />        {/* lab7 ← NOUVEAU, tout en bas */}
+        <ListeIncidents />     {/* lab7 ← Exercice 1 */}
       </main>
       <Footer />
     </div>
